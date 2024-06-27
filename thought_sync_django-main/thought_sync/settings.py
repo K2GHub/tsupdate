@@ -87,7 +87,7 @@ WSGI_APPLICATION = "thought_sync.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-         "NAME": os.path.join.(BASE_DIR, "db.sqlite3"),
+         "NAME": "/home/ec2-user/testingthoughtsync/db.sqlite3"
     }
 }
 
