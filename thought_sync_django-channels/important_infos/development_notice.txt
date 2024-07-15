@@ -1,0 +1,8 @@
++ For daphne, maybe we also need to add pipenv install 'twisted[http2,tls]' for extra good performance
+
++ SIMPLE_JWT in settings.py
+    - should we choose Bearer or JWT as header
+    - change ACCESS_TOKEN_LIFETIME and REFRESH_TOKEN_LIFETIME
+        - we need the user to be authenticated forever until they log out
+
++ 

@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djoser = "*"
+djangorestframework = "*"
+djangorestframework-simplejwt = "*"
+django-debug-toolbar = "*"
+pillow = "*"
+drf-nested-routers = "*"
+channels = "*"
+channels-redis = "*"
+daphne = "*"
+django-cors-headers = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

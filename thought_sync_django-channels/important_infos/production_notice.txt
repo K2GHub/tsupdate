@@ -1,0 +1,25 @@
++ Make sure that DEBUG = False in settings.py
+
++ Make sure to update ALLOWED_HOSTS in settings.py
+
++ Check if INTERNAL_IPS should be changed as well
+
++ Access and refresh lifetimes in SIMPLE_JWT should probably be discussed
+
++ The email SMTP definetly should be changed
+    - code with mosh has an example (in deployement module) of a cheap one we could users
+
++ CHANNEL_LAYERS in settings.py also need to be checked if it should changed
+    - we might need to change the redis config hosts but probably not an issue for not
+    because we should only do that if we want to run the redis server on a different platform
+
++ Pipfile has all the dependencies we need in the direct environment, but 
+there are some packages that we might still need to install on the global
+computer environment to run certain things
+    - Redis for example. We might need to run brew install redis or using docker
+
++ When you run "daphne -p 8001 thought_sync.asgi:application", is it working?
+    - if it's working, what is the root of the websocket url?
+
++ maybe change BASE_DIR / "db.sqlite3", to os.path.join(BASE_DIR, "db.sqlite3"),
+

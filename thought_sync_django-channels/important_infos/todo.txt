@@ -1,0 +1,7 @@
++ change SynchMembershipSerializer so that only synch that this user is part are options
+
++ change TextNoteViewSet or/and TextNoteSerializer so
+
+
+
+

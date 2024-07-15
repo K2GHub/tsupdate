@@ -1,0 +1,7 @@
++ REST API server with python manage.py runserver
++ Make sure redis server is running by running server-redis or redis-server (I cant remember wich one)
+    - this is because we are using channels_redis to handle channel CHANNEL_LAYERS
++ Run daphne server with daphne -p 8001 thought_sync.asgi:application
+    - this runs the websocket server
+
+
