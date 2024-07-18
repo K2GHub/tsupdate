@@ -14,24 +14,16 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
-from django.conf import settings
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-@g)nzso!o+y%v$8a$b25$nq7abh-rnsyqg%^p-7d4*k8y&xz7j"
+SECRET_KEY = 'your_generated_secret_key_here'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '3.80.52.123', '3.217.114.187', 'harmonyapp.org']
-
 
 # Application definition
 
@@ -52,14 +44,12 @@ INSTALLED_APPS = [
     "harmony",
 ]
 
-
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -97,7 +87,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -105,11 +94,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -122,15 +110,12 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
-"""
-    Set up the media directoty and endpoint
-"""
+# Media files (Uploaded files)
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
@@ -139,52 +124,47 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-"""
-    Initially created for Django Debug Toolbar
-    TO DO : - change before deployement
-"""
+# SECURITY SETTINGS
+
+SECURE_HSTS_SECONDS = 31536000  # Example: 1 year
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Django Debug Toolbar Configuration
+
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-"""
-    to allow general and websocket server to run at the same time 
-    and allow one to affect the other
-"""
+# CORS Settings
+
 CORS_ALLOWED_ORIGINS = [
-    # # "exp://139.147.205.224:8081",
-    # "http://localhost:8081",
-    # "http://127.0.0.1:8081",
+    # Add your allowed origins here
 ]
 
+# AUTH_USER_MODEL
 
-"""
-    model = core.User
-    NOTICE : - This is used as default User class in all Apps except core
-
-    RELATED FIELDS :
-        - profile : model = harmony.UserProfile : more info about this user
-"""
 AUTH_USER_MODEL = 'core.User'
 
-"""
-    set up the rest api stuff
-"""
+# REST Framework Settings
+
 REST_FRAMEWORK = {
-    'COERCE_DECIMAL_TO_STRING' : False,
+    'COERCE_DECIMAL_TO_STRING': False,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
 
-"""
-    Authentication with JWT
-"""
+# JWT Authentication Settings
+
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
     "ACCESS_TOKEN_LIFETIME": timedelta(days=7),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=90),
 }
+
+# DJOSER Settings
 
 DJOSER = {
     'SERIALIZERS': {
@@ -199,24 +179,20 @@ DJOSER = {
     },
     'SEND_CONFIRMATION_EMAIL': True,
     'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
-    'PASSWORD_RESET_CONFIRM_URL':'password/reset/confirm/{uid}/{token}'
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}'
 }
-# the PASSWORD_RESET_TIMEOUT is both for password reset and account validation
-PASSWORD_RESET_TIMEOUT = timedelta(minutes=40).total_seconds()
 
-"""
-    Set up Email SMTP
-"""
+# Email Settings
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'morazare@lafayette.edu' 
-EMAIL_HOST_PASSWORD = 'kobqbpcpthiaqrqs'  # Use App Password if you have 2-Step Verification enabled
+EMAIL_HOST_USER = 'your_email@gmail.com'  # Replace with your email credentials
+EMAIL_HOST_PASSWORD = 'your_email_password'  # Use App Password if you have 2-Step Verification enabled
 
-"""
-    Channel layers set up
-"""
+# Channel Layers Setup
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
