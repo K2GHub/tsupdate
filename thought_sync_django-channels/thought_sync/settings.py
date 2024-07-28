@@ -23,7 +23,7 @@ SECRET_KEY = 'your_generated_secret_key_here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '3.80.52.123', '3.217.114.187', 'harmonyapp.org']
+ALLOWED_HOSTS = ['127.0.0.1', '3.80.52.123', '3.217.114.187', 'harmonyapp.org:8000']
 
 # Application definition
 
